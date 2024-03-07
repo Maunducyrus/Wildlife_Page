@@ -1,0 +1,293 @@
+/* import google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body{
+    font-family: 'poppins';
+    background-color: #000;
+    color: #eee;
+    margin: 0;
+    font-size: 12px;
+}
+a{
+    text-decoration: none;
+    color: #eee;
+}
+a:hover{
+    color: limegreen;
+    font-size: xx-large;
+    text-decoration: underline;
+    }
+header{
+    width: 1140px;
+    max-width: 80%;
+    margin: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+    font-size: x-large;
+}
+header a{
+    margin-right: 40px;
+}
+
+.slider{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;  
+  margin-top: -50px;
+  position: relative;
+}
+.slider .list .item{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.slider .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slider .list .item .content{
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004;
+}
+.slider .list .item .content .author{
+   font-weight: bold;
+   letter-spacing: 10px; 
+}
+.slider .list .item .content .title,
+.slider .list .item .content .topic{
+    font-weight: bold;
+    font-size: 5em;
+    list-style: 1.3em;
+}
+.slider .list .item .content .topic{
+    color: #f1683a;
+}
+.slider .list .item .content .buttons{
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+.slider .list .item .content button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: 'poppins';
+    font-weight: 500;
+}
+.slider .list .item .content button:nth-child(2){
+background-color: transparent;
+color: #eee;
+border: 1px solid #eee;
+}
+/* thumbnails */
+.thumbnail{
+position: absolute;
+bottom: 50px;
+left: 50%;
+width: max-content;
+z-index: 100;
+display: flex;
+gap: 20px;
+}
+.thumbnail .item{
+    height: 220px;
+    width: 150px;
+    flex-shrink: 0;
+    position: relative;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.thumbnail .item .content{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+.thumbnail .item .content .title{
+    font-weight: bold;
+}
+.arrows{
+position: absolute;
+top: 80%;
+right: 100%;
+width: 300px;
+max-width: 30%;
+display: flex;
+gap: 10px;
+align-items: center;
+}
+.arrows button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    font-family: monospace;
+    color: #fff;
+    font-weight: bold;
+    font-size: large;
+    transition: .5s;
+    z-index: 100;
+}
+.arrows button:hover{
+    background-color: #eee;
+    color: #555;
+}
+.slider .list .item:nth-child(1){
+    z-index: 1;
+}
+.slider .list .item:nth-child(1) .author,
+.slider .list .item:nth-child(1) .title,
+.slider .list .item:nth-child(1) .topic,
+.slider .list .item:nth-child(1) .des,
+.slider .list .item:nth-child(1) .buttons{
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent 0.5s 1s linear 1 forwards;
+}
+@keyframes showContent{
+    to{
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+.slider .list .item:nth-child(1) .title{
+    animation-delay: 1.2s;
+}
+.slider .list .item:nth-child(1) .topic{
+    animation-delay: 1.4s;
+}
+.slider .list .item:nth-child(1) .des{
+    animation-delay: 1.6s; 
+}
+.slider .list .item:nth-child(1) .buttons{
+    animation-delay: 1.8s;
+}
+
+/* effects next click */
+.slider.next .list .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    border-radius: 20px;
+    animation: showImage 0.5s linear 1 forwards;
+}
+@keyframes showImage{
+    to{
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+}
+.slider.next .thumbnail .item:nth-last-child(1){
+    width: 0;
+    overflow: hidden;
+    animation: showThumbnail 0.5s linear 1 forwards;
+}
+@keyframes showThumbnail{
+    to{
+width: 150px;
+    }
+}
+.slider.next .thumbnail{
+    transform: translateX(150px);
+    animation: transformThumbnail 0.5s linear 1 forwards;
+}
+@keyframes transformThumbnail{
+    to{
+        transform: translateX(0);
+    }
+}
+/* effects prev click */
+.slider.prev .list .item:nth-child(2){
+z-index: 2;
+}
+.slider.prev .list .item:nth-child(2) img{
+position: absolute;
+bottom: 0;
+left: 0;
+animation: outImage 0.5s linear 1 forwards;
+}
+@keyframes outImage{
+    to{
+        width: 150px;
+        height: 220px;
+        border-radius: 20px;
+        left: 50%;
+        bottom: 50px;
+    }
+}
+.slider.prev .thumbnail .item:nth-child(1){
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    animation: showThumbnail 0.5s linear 1 forwards;
+}
+.slider.prev .list .item:nth-child(2) .author,
+.slider.prev  .list .item:nth-child(2) .title,
+.slider.prev  .list .item:nth-child(2) .topic,
+.slider.prev  .list .item:nth-child(2) .des,
+.slider.prev  .list .item:nth-child(2) .buttons{
+    animation: contentOut 1.5s linear 1 forwards;
+}
+@keyframes contentOUt{
+    to{
+        transform: translateY(-150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+.slider.next .arrows button,
+.slider.next .arrows button{
+pointer-events: none;
+}
+.time{
+    width: 0%;
+    height: 5px;
+    background-color: #f1683a;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+.slider.next .time,
+.slider.prev .time{
+width: 100%;
+animation: timeRunning 2s linear 1 forwards;;
+}
+@keyframes timeRunning{
+    to{
+        width: 0;
+    }
+}
+@media screen and (max-width: 678px){
+    .slider .list .item .content{
+        padding-right: 0;
+    }
+    .slider .list .item .content .title{
+        font-size: 30px;
+    }
+}
